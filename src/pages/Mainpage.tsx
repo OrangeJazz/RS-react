@@ -6,10 +6,12 @@ import { CardsContainer } from "components/CardsContainer";
 
 const Mainpage = () => {
   return (
-    <div>
+    <div className="container">
       <h2>Main Page</h2>
       <SearchBar />
-      <CardsContainer data={data as Doll[]} />
+      <div className="content-wrapper">
+        <CardsContainer data={data as Doll[]} />
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "./Card";
 import { Doll } from "./types";
-
+import "./CardsContainer.css";
 interface CardsProps {
   data: Doll[];
 }

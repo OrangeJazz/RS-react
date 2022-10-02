@@ -1,5 +1,31 @@
 import React from "react";
+import "./SearchBar.css";
 export class SearchBar extends React.Component {
+  state = {
+    value: "",
+  };
+
+  onSearch(searchStr: string) {
+    this.setState({ value: searchStr });
+    localStorage.setItem("searchStr", this.state.value);
+  }
+
+  componentDidMount(): void {
+    const value = localStorage.getItem("searchStr");
+    if (value) {
+      this.setState({ value });
+    }
+  }
+
+  componentWillUnmount(): void {
+    this.state.value.length &&
+      localStorage.setItem("searchStr", this.state.value);
+  }
+
+  componentDidUpdate(): void {
+    localStorage.setItem("searchStr", this.state.value);
+  }
+
   render() {
     return (
       <div className="search-bar">
@@ -8,14 +34,11 @@ export class SearchBar extends React.Component {
             type="search"
             className="search__input"
             placeholder="Search dolls"
+            value={this.state.value}
+            onChange={(e) => {
+              return this.onSearch(e.target.value);
+            }}
           />
-          <button className="search__button">
-            {/* <svg className="search__icon"> */}
-            {/* <path d="M17.545 15.467l-3.779-3.779c0.57-0.935 0.898-2.035 0.898-3.21 0-3.417-2.961-6.377-6.378-6.377s-6.186 2.769-6.186 6.186c0 3.416 2.961 6.377 6.377 6.377 1.137 0 2.2-0.309 3.115-0.844l3.799 3.801c0.372 0.371 0.975 0.371 1.346 0l0.943-0.943c0.371-0.371 0.236-0.84-0.135-1.211zM4.004 8.287c0-2.366 1.917-4.283 4.282-4.283s4.474 2.107 4.474 4.474c0 2.365-1.918 4.283-4.283 4.283s-4.473-2.109-4.473-4.474z"></path> */}
-            {/* <use xlinkHref="images/sprite.svg#icon-magnifying-glass"></use> */}
-            {/* </svg> */}
-            Search
-          </button>
         </form>
       </div>
     );

@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 
 const Notfoundpage = () => {
   return (
-    <div>
-      Error 404
-      <p>
-        This page doesn&apost exist. Go <Link to="/">home</Link>
-      </p>
+    <div className="container">
+      <h2>Error 404</h2>
+      <div className="content-wrapper">
+        <p>
+          This page does not exist. Go <Link to="/">home</Link>
+        </p>
+      </div>
     </div>
   );
 };
