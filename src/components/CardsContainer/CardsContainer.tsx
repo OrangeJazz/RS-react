@@ -1,6 +1,6 @@
 import React from "react";
-import { Card } from "./Card";
-import { Doll } from "./types";
+import { Card } from "../Card/Card";
+import { Doll } from "../../data/types";
 import "./CardsContainer.css";
 interface CardsProps {
   data: Doll[];

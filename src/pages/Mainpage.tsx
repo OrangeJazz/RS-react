@@ -1,8 +1,8 @@
 import React from "react";
-import { SearchBar } from "../components/SearchBar";
+import { SearchBar } from "../components/SearchBar/SearchBar";
 import data from "../data/data.json";
-import { Doll } from "../components/types";
-import { CardsContainer } from "components/CardsContainer";
+import { Doll } from "../data/types";
+import { CardsContainer } from "components/CardsContainer/CardsContainer";
 
 const Mainpage = () => {
   return (

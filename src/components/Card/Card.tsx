@@ -1,6 +1,6 @@
 import React from "react";
 import "./Card.css";
-import { Doll } from "./types";
+import { Doll } from "../../data/types";
 interface CardProps {
   doll: Doll;
 }
