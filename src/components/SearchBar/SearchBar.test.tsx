@@ -2,7 +2,7 @@ import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import { SearchBar } from "./SearchBar";
+import SearchBar from "./SearchBar";
 
 // Storage Mock
 function storageMock() {

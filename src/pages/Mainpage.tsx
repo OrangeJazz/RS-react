@@ -1,10 +1,9 @@
 import React from "react";
-import { SearchBar } from "../components/SearchBar/SearchBar";
+import { SearchBar, CardsContainer } from "../components";
 import data from "../data/data.json";
 import { Doll } from "../data/types";
-import { CardsContainer } from "components/CardsContainer/CardsContainer";
 
-const Mainpage = () => {
+const MainPage = () => {
   return (
     <div className="container">
       <h2>Main Page</h2>
@@ -16,4 +15,4 @@ const Mainpage = () => {
   );
 };
 
-export { Mainpage };
+export default MainPage;

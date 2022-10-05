@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Card } from "./Card";
-import { Doll } from "data/types";
+import Card from "./Card";
+import { Doll } from "../../data/types";
 
 const testDoll: Doll = {
   id: 5,

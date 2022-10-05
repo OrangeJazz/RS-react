@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Doll } from "data/types";
-import { CardsContainer } from "./CardsContainer";
+import { Doll } from "../../data/types";
+import CardsContainer from "./CardsContainer";
 
 const arrDolls: Doll[] = [
   {

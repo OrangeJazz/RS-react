@@ -1,6 +1,6 @@
 import React from "react";
 
-const Aboutpage = () => {
+const AboutPage = () => {
   return (
     <div className="container">
       <h2>About us Page</h2>
@@ -8,4 +8,4 @@ const Aboutpage = () => {
   );
 };
 
-export { Aboutpage };
+export default AboutPage;

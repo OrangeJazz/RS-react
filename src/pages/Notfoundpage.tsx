@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Notfoundpage = () => {
+const NotFoundPage = () => {
   return (
     <div className="container">
       <h2>Error 404</h2>
@@ -14,4 +14,4 @@ const Notfoundpage = () => {
   );
 };
 
-export { Notfoundpage };
+export default NotFoundPage;

@@ -1,23 +1,27 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
+
 interface ActiveOption {
   isActive: boolean;
 }
-const setActive = ({ isActive }: ActiveOption) =>
+
+const activity = ({ isActive }: ActiveOption) =>
   isActive ? "header__link active-link" : "header__link";
+
 const Header = () => {
   return (
     <header className="header">
       <div className="header__menu">
-        <NavLink to="/" className={setActive} end>
+        <NavLink to="/" className={activity} end>
           Home
         </NavLink>
-        <NavLink to="/about" className={setActive}>
+        <NavLink to="/about" className={activity}>
           About
         </NavLink>
       </div>
     </header>
   );
 };
-export { Header };
+
+export default Header;
