@@ -19,6 +19,9 @@ const Header = () => {
         <NavLink to="/about" className={activity}>
           About
         </NavLink>
+        <NavLink to="/form" className={activity}>
+          Form
+        </NavLink>
       </div>
     </header>
   );
