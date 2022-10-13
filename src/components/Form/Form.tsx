@@ -137,7 +137,6 @@ export default class Form extends React.Component<FormProps, FormState> {
 
     let isValid = true;
     const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-    console.log(regName.test(name));
     isValid = this.isValidComponent(name.trim().length < 2, "name") && isValid;
     isValid = this.isValidComponent(!regName.test(name), "name") && isValid;
     isValid =
