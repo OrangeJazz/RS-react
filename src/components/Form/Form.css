@@ -1,0 +1,130 @@
+.form {
+  max-width: 60rem;
+  margin: 3rem auto;
+  padding: 3rem;
+  border: 2px solid rgba(41, 27, 75);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.8rem;
+}
+
+.form__fieldset {
+  border: none;
+}
+
+.form__text,
+.form__upload,
+.form__date,
+.form__select,
+.form__switch,
+.form__accept {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form__text-input {
+  width: 75%;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 5rem;
+  font-size: 1.8rem;
+}
+
+.form__btn_upload,
+.btn__submit,
+.btn__submit_disabled {
+  padding: 0.5rem 1.5rem;
+  border-radius: 5rem;
+  background-color: rgba(41, 27, 75);
+  border: 2px solid rgba(41, 27, 75);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.8rem;
+}
+
+.form__btn_upload:hover,
+.btn__submit:hover {
+  background-color: #ebdffd;
+  color: rgba(41, 27, 75);
+  border: 2px solid rgba(41, 27, 75);
+}
+
+.btn__submit_disabled {
+  cursor: auto;
+  background-color: #ebdffd;
+  color: rgba(41, 27, 75);
+  border: 2px solid rgba(41, 27, 75);
+}
+
+.form__date-input {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 5rem;
+  font-size: 1.8rem;
+}
+
+.form__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form__list-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form__list-item {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.form__list-items_radio {
+  display: flex;
+  align-items: center;
+}
+
+.form__btn_radio {
+  width: 6rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5rem 0 0 5rem;
+  border: 2px solid rgba(41, 27, 75);
+  cursor: pointer;
+}
+
+.btn_right {
+  border-radius: 0 5rem 5rem 0;
+}
+
+.form__list-items_radio input {
+  display: none;
+}
+
+#rare:checked ~ label .btn_left,
+#not-rare:checked ~ label .btn_right {
+  background-color: rgba(41, 27, 75);
+  color: #ebdffd;
+}
+
+.select__options {
+  width: 40%;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 5rem;
+  font-size: 1.8rem;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.4rem;
+}
+
+.error-message_hidden {
+  font-size: 1.4rem;
+  visibility: hidden;
+}

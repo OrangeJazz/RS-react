@@ -21,7 +21,7 @@ export interface User {
   date: string;
   image: string;
   dollTypes: Set<string>;
-  rare: boolean;
+  rarity: boolean;
   dollBrand: string;
   promo: boolean;
 }

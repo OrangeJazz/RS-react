@@ -1,0 +1,43 @@
+.form-card {
+  display: flex;
+  height: 40rem;
+  width: 40rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  border-radius: 2rem;
+  overflow: hidden;
+  background-color: rgba(41, 27, 75);
+  color: #ebdffd;
+}
+
+.form-card__picture {
+  max-width: 25rem;
+  max-height: 25rem;
+}
+
+.form-card__details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  height: 20rem;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+.form-card__heading {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.8rem;
+}
+
+.form-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style-type: none;
+  text-align: center;
+}

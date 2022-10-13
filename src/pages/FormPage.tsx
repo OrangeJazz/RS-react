@@ -32,10 +32,10 @@ export default class FormPage extends React.Component<
               });
             }}
           />
+          {this.state.value.length > 0 && (
+            <FormCardContainer data={this.state.value} />
+          )}
         </div>
-        {this.state.value.length > 0 && (
-          <FormCardContainer data={this.state.value} />
-        )}
       </div>
     );
   }
