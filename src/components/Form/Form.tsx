@@ -137,16 +137,13 @@ export default class Form extends React.Component<FormProps, FormState> {
 
     let isValid = true;
     const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    console.log(regName.test(name));
+    isValid = this.isValidComponent(name.trim().length < 2, "name") && isValid;
+    isValid = this.isValidComponent(!regName.test(name), "name") && isValid;
     isValid =
-      this.isValidComponent(
-        name.trim().length < 2 && !regName.test(name),
-        "name"
-      ) && isValid;
+      this.isValidComponent(surname.trim().length < 2, "surname") && isValid;
     isValid =
-      this.isValidComponent(
-        surname.trim().length < 2 && !regName.test(name),
-        "surname"
-      ) && isValid;
+      this.isValidComponent(!regName.test(surname), "surname") && isValid;
     const dataValue = new Date(date);
     const currentDay = new Date();
     isValid =
@@ -238,7 +235,11 @@ export default class Form extends React.Component<FormProps, FormState> {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="form">
+      <form
+        onSubmit={this.handleSubmit}
+        className="form"
+        data-testid={"react-form"}
+      >
         <fieldset className="form__fieldset">
           <label className="form__text">
             First Name:
@@ -248,9 +249,13 @@ export default class Form extends React.Component<FormProps, FormState> {
               name="name"
               ref={this.name}
               className="form__text-input"
+              data-testid={"name-input"}
             />
           </label>
-          <div className={`error-message${this.state.name ? "_hidden" : ""}`}>
+          <div
+            className={`error-message${this.state.name ? "_hidden" : ""}`}
+            data-testid={"name-error"}
+          >
             The first name must contain only letters and more then 2 letters
           </div>
         </fieldset>
@@ -263,10 +268,12 @@ export default class Form extends React.Component<FormProps, FormState> {
               type="text"
               ref={this.surname}
               className="form__text-input"
+              data-testid={"surname-input"}
             />
           </label>
           <div
             className={`error-message${this.state.surname ? "_hidden" : ""}`}
+            data-testid={"surname-error"}
           >
             The last name must contain only letters and more then 2 letters
           </div>
@@ -276,7 +283,10 @@ export default class Form extends React.Component<FormProps, FormState> {
             Image:
             <div className="form__btn_upload">Upload</div>
           </label>
-          <div className={`error-message${this.state.file ? "_hidden" : ""}`}>
+          <div
+            className={`error-message${this.state.file ? "_hidden" : ""}`}
+            data-testid={"image-error"}
+          >
             You should download the image for avatar
           </div>
           <input
@@ -286,6 +296,7 @@ export default class Form extends React.Component<FormProps, FormState> {
             style={{ visibility: "hidden", display: "none" }}
             ref={this.file}
             id="upload-button"
+            data-testid={"image-input"}
           />
         </fieldset>
         <fieldset className="form__fieldset">
@@ -297,9 +308,13 @@ export default class Form extends React.Component<FormProps, FormState> {
               name="date"
               ref={this.date}
               className="form__date-input"
+              data-testid={"date-input"}
             />
           </label>
-          <div className={`error-message${this.state.date ? "_hidden" : ""}`}>
+          <div
+            className={`error-message${this.state.date ? "_hidden" : ""}`}
+            data-testid={"date-error"}
+          >
             The Date of Birth should be in the past
           </div>
         </fieldset>
@@ -315,6 +330,7 @@ export default class Form extends React.Component<FormProps, FormState> {
                   ref={this.dollTypeBjd}
                   value="bjd"
                   onChange={this.onChangeHandler}
+                  data-testid={"dollType-input"}
                 />
                 <label htmlFor="bjd">BJD</label>
               </div>
@@ -375,6 +391,7 @@ export default class Form extends React.Component<FormProps, FormState> {
                 name="doll-rare"
                 value="true"
                 onChange={this.onChangeHandler}
+                data-testid={"radio-input-1"}
               />
               <label htmlFor="rare">
                 <div className="form__list-item form__btn_radio btn_left">
@@ -389,6 +406,7 @@ export default class Form extends React.Component<FormProps, FormState> {
                 value="false"
                 onChange={this.onChangeHandler}
                 defaultChecked={true}
+                data-testid={"radio-input-2"}
               />
               <label htmlFor="not-rare">
                 <div className="form__list-item form__btn_radio btn_right">
@@ -407,6 +425,7 @@ export default class Form extends React.Component<FormProps, FormState> {
               name="dollBrand"
               className="select__options"
               onChange={this.onChangeHandler}
+              data-testid={"select-input"}
             >
               <option value="barbie">Barbie</option>
               <option value="pullip">Pullip</option>
@@ -425,6 +444,7 @@ export default class Form extends React.Component<FormProps, FormState> {
               id="readyForPromo"
               name="promoPermission"
               onChange={this.onChangeHandler}
+              data-testid={"promoPermission-input"}
             />
             I want to receive notifications about promo, sales, etc.
           </label>
@@ -432,8 +452,9 @@ export default class Form extends React.Component<FormProps, FormState> {
             className={`error-message${
               this.state.promoPermission ? "_hidden" : ""
             }`}
+            data-testid={"promoPermission-error"}
           >
-            Please, give you permission
+            Please, give your permission
           </div>
         </fieldset>
         <button
@@ -441,6 +462,7 @@ export default class Form extends React.Component<FormProps, FormState> {
           className={
             this.state.buttonDisable ? "btn__submit_disabled" : "btn__submit"
           }
+          data-testid={"submit-button"}
           disabled={this.state.buttonDisable}
         >
           Submit
