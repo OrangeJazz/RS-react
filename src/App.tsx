@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { NotFoundPage, AboutPage, MainPage, FormPage } from "./pages";
+import { NotFoundPage, AboutPage, MainPage, FormPage, APIPage } from "./pages";
 import { Layout } from "./components";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="form" element={<FormPage />} />
+          <Route path="api" element={<APIPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

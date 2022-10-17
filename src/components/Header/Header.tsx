@@ -22,6 +22,9 @@ const Header = () => {
         <NavLink to="/form" className={activity}>
           Form
         </NavLink>
+        <NavLink to="/api" className={activity}>
+          API
+        </NavLink>
       </div>
     </header>
   );

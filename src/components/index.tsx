@@ -4,6 +4,8 @@ export { default as CardsContainer } from "./CardsContainer/CardsContainer";
 export { default as Footer } from "./Footer/Footer";
 export { default as Header } from "./Header/Header";
 export { default as SearchBar } from "./SearchBar/SearchBar";
+export { default as SearchBarApi } from "./SearchBarApi/SearchBarApi";
 export { default as Form } from "./Form/Form";
 export { default as FormCard } from "./FormCard/FormCard";
 export { default as FormCardContainer } from "./FormCardContainer/FormCardContainer";
+export { default as Modal } from "./Modal/Modal";
