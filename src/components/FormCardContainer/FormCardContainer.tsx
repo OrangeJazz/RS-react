@@ -1,7 +1,6 @@
 import React from "react";
 import { FormCard } from "components";
 import { User } from "../../data/types";
-// import "./CardsContainer.css";
 
 interface CardsProps {
   data: User[];

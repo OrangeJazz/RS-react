@@ -138,11 +138,11 @@ export default class Form extends React.Component<FormProps, FormState> {
     let isValid = true;
     const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
     isValid = this.isValidComponent(name.trim().length < 2, "name") && isValid;
-    isValid = this.isValidComponent(!regName.test(name), "name") && isValid;
+    isValid = this.isValidComponent(regName.test(name), "name") && isValid;
     isValid =
       this.isValidComponent(surname.trim().length < 2, "surname") && isValid;
     isValid =
-      this.isValidComponent(!regName.test(surname), "surname") && isValid;
+      this.isValidComponent(regName.test(surname), "surname") && isValid;
     const dataValue = new Date(date);
     const currentDay = new Date();
     isValid =
@@ -210,7 +210,6 @@ export default class Form extends React.Component<FormProps, FormState> {
     const promoPermission = this.promoPermission.current as HTMLInputElement;
 
     this.setState({ firstChangeForm: true });
-
     if (!this.validationAll()) {
       this.setState({ buttonDisable: true });
       return;

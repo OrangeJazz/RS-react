@@ -23,7 +23,7 @@ const FormCard = (props: CardProps) => {
         <img className="form-card__picture" src={image} alt="user image" />
       </div>
       <div className="form-card__details">
-        <h4 className="form-card__heading">{firstName + " " + lastName}</h4>
+        <h4 className="form-card__heading">{`${firstName} ${lastName}`}</h4>
         <ul className="form-card__list">
           <li>Date of Birth: {date}</li>
           <li>Favorite Brand: {dollBrand}</li>
