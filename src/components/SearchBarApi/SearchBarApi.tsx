@@ -1,5 +1,5 @@
 import React from "react";
-import "./SearchBarApi.modele.css";
+import classes from "./SearchBarApi.module.css";
 
 const SearchBarApi = () => {
   // state = {

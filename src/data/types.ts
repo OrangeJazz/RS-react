@@ -25,3 +25,8 @@ export interface User {
   dollBrand: string;
   promo: boolean;
 }
+
+export interface Item {
+  id: string;
+  name: string;
+}

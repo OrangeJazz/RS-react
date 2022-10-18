@@ -9,3 +9,6 @@ export { default as Form } from "./Form/Form";
 export { default as FormCard } from "./FormCard/FormCard";
 export { default as FormCardContainer } from "./FormCardContainer/FormCardContainer";
 export { default as Modal } from "./Modal/Modal";
+export { default as Backdrop } from "./Backdrop/Backdrop";
+export { default as CardApi } from "./CardApi/CardApi";
+export { default as ContainerApi } from "./ContainerApi/ContainerApi";
