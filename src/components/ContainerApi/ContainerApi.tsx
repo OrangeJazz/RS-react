@@ -1,18 +1,31 @@
-import { CardApi } from "components";
+import React, { FC, useState } from "react";
+import { CardApi, Modal } from "components";
 import { Item } from "../../data/types";
-import React from "react";
 import classes from "./ContainerApi.module.css";
 
 interface ContainerApiProps {
-  data: Item[];
+  items: Item[];
 }
 
-const ContainerApi = (props: ContainerApiProps) => {
+const ContainerApi: FC<ContainerApiProps> = (props) => {
+  const [modalItem, setModalItem] = useState<Item>();
   return (
     <div className={classes.api__container}>
-      {props.data.map((el) => (
-        <CardApi item={el} key={el.id} />
+      {props.items.map((el) => (
+        <CardApi
+          item={el}
+          key={el.name}
+          setActiveItem={(el) => setModalItem(el)}
+        />
       ))}
+      {modalItem && (
+        <Modal
+          item={modalItem}
+          onCancel={() => {
+            setModalItem(undefined);
+          }}
+        />
+      )}
     </div>
   );
 };

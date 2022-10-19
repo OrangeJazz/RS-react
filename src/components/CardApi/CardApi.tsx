@@ -1,21 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
 import classes from "./CardApi.module.css";
 import { Item } from "../../data/types";
 
 interface CardApiProps {
   item: Item;
+  setActiveItem: (item: Item) => void;
 }
 
-const CardApi = (props: CardApiProps) => {
+const CardApi: FC<CardApiProps> = (props) => {
   const item = props.item;
+  const clickHandler = () => {
+    props.setActiveItem(item);
+  };
   return (
-    <div className="card">
-      <div className="card__picture-container">
-        {/* <img className="card__picture" src={item.img} alt="image" /> */}
-      </div>
-      <div className="card__details">
-        <h4 className="card__heading">
-          <span className="card__heading-span">{item.name.toUpperCase()}</span>
+    <div className={classes.card} onClick={clickHandler}>
+      <div className={classes.card__details}>
+        <h4 className={classes.card__heading}>
+          <span className={classes.card__heading_span}>
+            {item.name.toUpperCase()}
+          </span>
         </h4>
       </div>
     </div>

@@ -12,3 +12,4 @@ export { default as Modal } from "./Modal/Modal";
 export { default as Backdrop } from "./Backdrop/Backdrop";
 export { default as CardApi } from "./CardApi/CardApi";
 export { default as ContainerApi } from "./ContainerApi/ContainerApi";
+export { default as LoadingSpinner } from "./LoadingSpinner/LoadingSpinner";

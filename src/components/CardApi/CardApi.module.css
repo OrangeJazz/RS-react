@@ -1,0 +1,48 @@
+.card {
+  display: flex;
+  height: 25rem;
+  width: 25rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  overflow: hidden;
+  cursor: pointer;
+  gap: 1rem;
+  background-color: rgba(41, 27, 75);
+  color: #fff;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  color: #e27b1a;
+  transform: scale(1.05);
+}
+
+.card__details {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(41, 27, 75);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 20rem;
+  width: 100%;
+}
+
+.card__heading {
+  font-size: 1.8rem;
+  font-weight: 300;
+  text-align: center;
+  align-self: center;
+  width: 75%;
+  line-height: 2.8rem;
+}
+
+.card__heading-span {
+  padding: 1rem 1.2rem;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-color: rgba(41, 27, 75);
+}

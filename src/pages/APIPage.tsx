@@ -1,40 +1,38 @@
-import React, { useEffect, useState } from "react";
-// import { SearchBarApi } from "components";
+import { SearchBarApi, LoadingSpinner, ContainerApi } from "components";
+import React, { useEffect, useState, FC } from "react";
+import axiosInstance from "../services/api";
 import { Item } from "../data/types";
 
-const APIPage = () => {
+const APIPage: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedItems, setLoadedItems] = useState([] as Item[]);
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://swapi.dev/api/people/")
+
+    axiosInstance
+      .get(`people/`)
       .then((response) => {
-        const items = response.json();
-        return items;
-      })
-      .then((data: Item[]) => {
+        setLoadedItems(response.data.results);
         setIsLoading(false);
-        setLoadedItems(data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
-  if (isLoading) {
-    return (
-      <section>
-        <p>Loading...</p>
-      </section>
-    );
-  }
-  console.log(loadedItems);
-
   return (
     <div className="container">
       <h2>API Page</h2>
-      <section>{/* <MeetupList meetups={loadedMeetups} /> */}</section>
+      <SearchBarApi
+        items={(items) => {
+          setLoadedItems(items);
+        }}
+      />
+      <div className="content-wrapper">
+        {(isLoading || !loadedItems.length) && <LoadingSpinner />}
+        {!isLoading && <ContainerApi items={loadedItems} />}
+      </div>
     </div>
   );
 };
