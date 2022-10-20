@@ -10,7 +10,7 @@ interface ContainerApiProps {
 const ContainerApi: FC<ContainerApiProps> = (props) => {
   const [modalItem, setModalItem] = useState<Item>();
   return (
-    <div className={classes.api__container}>
+    <div className={classes.api__container} data-testid={"container-api"}>
       {props.items.map((el) => (
         <CardApi
           item={el}

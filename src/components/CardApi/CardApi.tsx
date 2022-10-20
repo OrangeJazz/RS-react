@@ -13,7 +13,11 @@ const CardApi: FC<CardApiProps> = (props) => {
     props.setActiveItem(item);
   };
   return (
-    <div className={classes.card} onClick={clickHandler}>
+    <div
+      className={classes.card}
+      onClick={clickHandler}
+      data-testid={"card-api"}
+    >
       <div className={classes.card__details}>
         <h4 className={classes.card__heading}>
           <span className={classes.card__heading_span}>

@@ -30,7 +30,7 @@ const SearchBarApi: FC<SearchProps> = (props) => {
   };
 
   return (
-    <div className={classes.search__container}>
+    <div className={classes.search__container} data-testid="api-search">
       <form onSubmit={submitHandler} className={classes.search}>
         <input
           type="search"
@@ -40,8 +40,13 @@ const SearchBarApi: FC<SearchProps> = (props) => {
           onChange={changeHandler}
           disabled={isLoading}
           id="search"
+          data-testid="api-search-input"
         />
-        <button type="submit" className={classes.search__button}>
+        <button
+          type="submit"
+          className={classes.search__button}
+          data-testid="api-search-button"
+        >
           Search
         </button>
       </form>

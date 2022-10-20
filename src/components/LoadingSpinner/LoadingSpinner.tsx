@@ -3,7 +3,7 @@ import classes from "./LoadingSpinner.module.css";
 
 const LoadingSpinner: FC = () => {
   return (
-    <div className={classes.spinner}>
+    <div className={classes.spinner} data-testid="spinner">
       <div className={classes.spinner__ring}></div>
     </div>
   );

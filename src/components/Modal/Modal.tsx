@@ -17,17 +17,23 @@ const Modal: FC<ModalProps> = (props) => {
   return (
     <div>
       <Backdrop onClick={cancelHandler} />
-      <div className={classes.modal}>
-        <button className={classes.modal__close} onClick={cancelHandler}>
+      <div className={classes.modal} data-testid="modal">
+        <button
+          className={classes.modal__close}
+          onClick={cancelHandler}
+          data-testid="modal-button"
+        >
           X
         </button>
-        <h2 className={classes.modal__heading}>{item.name}</h2>
+        <h2 className={classes.modal__heading} data-testid="modal-name">
+          {item.name}
+        </h2>
         <ul className={classes.modal__list}>
           <li>Birth year: {item.birth_year}</li>
           <li>Gender: {item.gender}</li>
           <li>Height: {item.height}</li>
           <li>Mass: {item.mass}</li>
-          <li>Eye color: {item.eye_color}</li>
+          <li data-testid="modal-eye-color">Eye color: {item.eye_color}</li>
           <li>Hair color: {item.hair_color}</li>
           <li>Skin color: {item.skin_color}</li>
         </ul>
