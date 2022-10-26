@@ -7,14 +7,14 @@ interface CardsProps {
   data: Doll[];
 }
 
-export default class CardsContainer extends React.Component<CardsProps> {
-  render(): React.ReactNode {
-    return (
-      <div className="cards-container">
-        {this.props.data.map((el) => (
-          <Card doll={el} key={el.id} />
-        ))}
-      </div>
-    );
-  }
-}
+const CardsContainer = (props: CardsProps) => {
+  return (
+    <div className="cards-container">
+      {props.data.map((el) => (
+        <Card doll={el} key={el.id} />
+      ))}
+    </div>
+  );
+};
+
+export default CardsContainer;

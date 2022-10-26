@@ -6,14 +6,14 @@ interface CardsProps {
   data: User[];
 }
 
-export default class FormCardContainer extends React.Component<CardsProps> {
-  render(): React.ReactNode {
-    return (
-      <div className="cards-container">
-        {this.props.data.map((el) => (
-          <FormCard user={el} key={el.id} />
-        ))}
-      </div>
-    );
-  }
-}
+const FormCardContainer = (props: CardsProps) => {
+  return (
+    <div className="cards-container">
+      {props.data.map((el) => (
+        <FormCard user={el} key={el.id} />
+      ))}
+    </div>
+  );
+};
+
+export default FormCardContainer;

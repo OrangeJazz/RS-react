@@ -1,47 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SearchBar.css";
 
-export default class SearchBar extends React.Component {
-  state = {
-    value: "",
-  };
+// interface SearchProps {
+//   onSearch: (searchStr: string) => void;
+// }
 
-  onSearch(searchStr: string) {
-    this.setState({ value: searchStr });
-    localStorage.setItem("searchStr", this.state.value);
-  }
+const SearchBar = () => {
+  const [string, setString] = useState("");
 
-  componentDidMount(): void {
+  useEffect(() => {
     const value = localStorage.getItem("searchStr");
     if (value) {
-      this.setState({ value });
+      setString(value);
     }
-  }
+  }, []);
 
-  componentWillUnmount(): void {
-    this.state.value.length &&
-      localStorage.setItem("searchStr", this.state.value);
-  }
+  useEffect(() => {
+    localStorage.setItem("searchStr", string);
+  }, [string]);
 
-  componentDidUpdate(): void {
-    localStorage.setItem("searchStr", this.state.value);
-  }
+  const onSearch = (searchStr: string) => {
+    setString(searchStr);
+    localStorage.setItem("searchStr", string);
+  };
 
-  render() {
-    return (
-      <div className="search-bar">
-        <form action="#" className="search">
-          <input
-            type="search"
-            className="search__input"
-            placeholder="Search dolls"
-            value={this.state.value}
-            onChange={(e) => {
-              return this.onSearch(e.target.value);
-            }}
-          />
-        </form>
-      </div>
-    );
-  }
-}
+  // componentDidMount(): void {
+  //   const value = localStorage.getItem("searchStr");
+  //   if (value) {
+  //     this.setState({ value });
+  //   }
+  // }
+
+  // componentWillUnmount(): void {
+  //   this.state.value.length &&
+  //     localStorage.setItem("searchStr", this.state.value);
+  // }
+
+  // componentDidUpdate(): void {
+  //   localStorage.setItem("searchStr", this.state.value);
+  // }
+
+  return (
+    <div className="search-bar">
+      <form action="#" className="search">
+        <input
+          type="search"
+          className="search__input"
+          placeholder="Search dolls"
+          value={string}
+          onChange={(e) => {
+            return onSearch(e.target.value);
+          }}
+        />
+      </form>
+    </div>
+  );
+};
+
+export default SearchBar;
