@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import classes from "./Modal.module.css";
-import { Item } from "../../data/types";
+import { PeopleItem } from "../../data/types";
 import { Backdrop } from "components";
 
 interface ModalProps {
   onCancel: () => void;
-  item: Item;
+  item: PeopleItem;
 }
 
 const Modal: FC<ModalProps> = (props) => {

@@ -48,13 +48,7 @@ afterAll(() => server.close());
 describe("Search tests", () => {
   window.URL.createObjectURL = jest.fn();
   it("Search renders", async () => {
-    render(
-      <SearchBarApi
-        items={(itemMock) => {
-          console.log(itemMock);
-        }}
-      />
-    );
+    render(<SearchBarApi />);
     const element = await screen.findByTestId("api-search");
     const button = await screen.findByTestId("api-search-button");
     const input = await screen.findByTestId("api-search-input");
@@ -64,15 +58,7 @@ describe("Search tests", () => {
   });
 
   it("Search", async () => {
-    render(
-      <SearchBarApi
-        items={(items) => {
-          if (items.length) {
-            console.log(items[0].name);
-          }
-        }}
-      />
-    );
+    render(<SearchBarApi />);
     const button = await screen.findByTestId("api-search-button");
     // const input = (await screen.findByTestId(
     //   "api-search-input"

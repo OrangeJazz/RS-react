@@ -1,0 +1,15 @@
+export const CHANGE_FILTER = "CHANGE_FILTER";
+
+export const CHANGE_SEARCH_VALUE = "CHANGE_SEARCH_VALUE";
+
+export const CHANGE_ITEMS = "CHANGE_ITEMS";
+
+export const CHANGE_FIRST_NAME = "CHANGE_FIRST_NAME";
+export const CHANGE_LAST_NAME = "CHANGE_LAST_NAME";
+export const CHANGE_FILE = "CHANGE_FILE";
+export const CHANGE_DATE = "CHANGE_DATE";
+export const CHANGE_FAV_BRAND = "CHANGE_FAV_BRAND";
+export const CHANGE_PROMO = "CHANGE_PROMO";
+export const CHANGE_RARE = "CHANGE_RARE";
+export const ADD_DOLL_TYPE = "ADD_DOLL_TYPE";
+export const DELETE_DOLL_TYPE = "DELETE_DOLL_TYPE";

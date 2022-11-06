@@ -1,14 +1,14 @@
 import React, { FC, useState } from "react";
 import { CardApi, Modal } from "components";
-import { Item } from "../../data/types";
+import { PeopleItem } from "../../data/types";
 import classes from "./ContainerApi.module.css";
 
 interface ContainerApiProps {
-  items: Item[];
+  items: PeopleItem[];
 }
 
 const ContainerApi: FC<ContainerApiProps> = (props) => {
-  const [modalItem, setModalItem] = useState<Item>();
+  const [modalItem, setModalItem] = useState<PeopleItem>();
   return (
     <div className={classes.api__container} data-testid={"container-api"}>
       {props.items.map((el) => (

@@ -1,4 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import { Context } from "App";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import {
+  addDollType,
+  changeDate,
+  changeFavBrand,
+  changeFile,
+  changeFirstName,
+  changeLastName,
+  changePromo,
+  changeRare,
+  deleteDollType,
+} from "store/actions";
 import { User } from "../../data/types";
 import "./Form.css";
 
@@ -17,20 +29,6 @@ type StateKeys =
   | "promoPermission"
   | "doll-rare"
   | "dollBrand";
-
-// interface FormState {
-//   firstChangeForm: boolean;
-//   buttonDisable: boolean;
-//   name: boolean;
-//   surname: boolean;
-//   date: boolean;
-//   favBrand: boolean;
-//   file: boolean;
-//   img: string | null;
-//   dollTypes: boolean;
-//   rarity: boolean;
-//   promoPermission: boolean;
-// }
 
 const Form = (props: FormProps) => {
   const name = useRef<HTMLInputElement | null>(null);
@@ -58,6 +56,8 @@ const Form = (props: FormProps) => {
   const [dollTypesState, setDollTypesState] = useState(true);
   const [rarityState, setRarityState] = useState(true);
   const [promoPermissionState, setPromoPermissionState] = useState(true);
+
+  const { state, dispatch } = useContext(Context);
 
   useEffect(() => {
     if (
@@ -95,33 +95,45 @@ const Form = (props: FormProps) => {
 
     if (name === "file" && avatar.files && avatar.files.length !== 0) {
       setImgState(URL.createObjectURL(avatar.files[0]));
+      dispatch(changeFile(avatar.files));
+      console.log(e.target.value);
+      // console.log((file.current as HTMLInputElement).files as FileList);
     }
 
     if (name.includes("dollType")) {
       const target = (e as React.ChangeEvent<HTMLInputElement>).target;
-      target.checked
-        ? dollTypes.add(e.target.value)
-        : dollTypes.delete(e.target.value);
+      if (target.checked) {
+        dollTypes.add(e.target.value);
+        dispatch(addDollType(e.target.value));
+      } else {
+        dollTypes.delete(e.target.value);
+        dispatch(deleteDollType(e.target.value));
+      }
       setDollTypesState(true);
     }
 
     if (name === "doll-rare") {
       const target = (e as React.ChangeEvent<HTMLInputElement>).target;
+      dispatch(changeRare(target.value === "true"));
       rarity = target.value === "true";
     }
 
     switch (name) {
       case "name":
         setNameState(true);
+        dispatch(changeFirstName(e.target.value));
         break;
       case "surname":
         setSurnameState(true);
+        dispatch(changeLastName(e.target.value));
         break;
       case "date":
         setDateState(true);
+        dispatch(changeDate(e.target.value));
         break;
       case "dollBrand":
         setFavBrandState(true);
+        dispatch(changeFavBrand(e.target.value));
         break;
       case "doll-rare":
         setRarityState(true);
@@ -130,7 +142,9 @@ const Form = (props: FormProps) => {
         setFileState(true);
         break;
       case "promoPermission":
+        const target = (e as React.ChangeEvent<HTMLInputElement>).target;
         setPromoPermissionState(true);
+        dispatch(changePromo(target.checked));
         break;
       default:
         break;
@@ -256,6 +270,7 @@ const Form = (props: FormProps) => {
             ref={name}
             className="form__text-input"
             data-testid={"name-input"}
+            value={state.form.firstName}
           />
         </label>
         <div
@@ -275,6 +290,7 @@ const Form = (props: FormProps) => {
             ref={surname}
             className="form__text-input"
             data-testid={"surname-input"}
+            value={state.form.lastName}
           />
         </label>
         <div
@@ -303,6 +319,9 @@ const Form = (props: FormProps) => {
           ref={file}
           id="upload-button"
           data-testid={"image-input"}
+          // value={
+          // state.form.image[0] && URL.createObjectURL(state.form.image[0])
+          // }
         />
       </fieldset>
       <fieldset className="form__fieldset">
@@ -315,6 +334,7 @@ const Form = (props: FormProps) => {
             ref={date}
             className="form__date-input"
             data-testid={"date-input"}
+            value={state.form.date}
           />
         </label>
         <div
@@ -337,6 +357,7 @@ const Form = (props: FormProps) => {
                 value="bjd"
                 onChange={onChangeHandler}
                 data-testid={"dollType-input"}
+                defaultChecked={state.form.dollType.has("bjd")}
               />
               <label htmlFor="bjd">BJD</label>
             </div>
@@ -348,6 +369,7 @@ const Form = (props: FormProps) => {
                 ref={dollTypeAntique}
                 value="antique"
                 onChange={onChangeHandler}
+                defaultChecked={state.form.dollType.has("antique")}
               />
               <label htmlFor="antique">Antique</label>
             </div>
@@ -359,6 +381,7 @@ const Form = (props: FormProps) => {
                 ref={dollTypeOoak}
                 value="OOAK"
                 onChange={onChangeHandler}
+                defaultChecked={state.form.dollType.has("OOAK")}
               />
               <label htmlFor="ooak">OOAK</label>
             </div>
@@ -370,6 +393,7 @@ const Form = (props: FormProps) => {
                 ref={dollTypePlay}
                 value="play"
                 onChange={onChangeHandler}
+                defaultChecked={state.form.dollType.has("play")}
               />
               <label htmlFor="play">Play</label>
             </div>
@@ -381,6 +405,7 @@ const Form = (props: FormProps) => {
                 ref={dollTypeCollection}
                 value="collection"
                 onChange={onChangeHandler}
+                defaultChecked={state.form.dollType.has("collection")}
               />
               <label htmlFor="collection">Collection</label>
             </div>
@@ -390,6 +415,7 @@ const Form = (props: FormProps) => {
       <fieldset className="form__fieldset">
         <div className="form__switch">
           <legend>Do you prefer rare dolls?</legend>
+
           <div className="form__list-items_radio">
             <input
               type="radio"
@@ -397,6 +423,7 @@ const Form = (props: FormProps) => {
               name="doll-rare"
               value="true"
               onChange={onChangeHandler}
+              defaultChecked={!!state.form.rare}
               data-testid={"radio-input-1"}
             />
             <label htmlFor="rare">
@@ -411,7 +438,7 @@ const Form = (props: FormProps) => {
               name="doll-rare"
               value="false"
               onChange={onChangeHandler}
-              defaultChecked={true}
+              defaultChecked={!state.form.rare}
               data-testid={"radio-input-2"}
             />
             <label htmlFor="not-rare">
@@ -432,6 +459,7 @@ const Form = (props: FormProps) => {
             className="select__options"
             onChange={onChangeHandler}
             data-testid={"select-input"}
+            defaultValue={state.form.favBrand}
           >
             <option value="barbie">Barbie</option>
             <option value="pullip">Pullip</option>
@@ -451,6 +479,7 @@ const Form = (props: FormProps) => {
             name="promoPermission"
             onChange={onChangeHandler}
             data-testid={"promoPermission-input"}
+            defaultChecked={state.form.promoPermission}
           />
           I want to receive notifications about promo, sales, etc.
         </label>

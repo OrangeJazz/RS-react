@@ -13,3 +13,4 @@ export { default as Backdrop } from "./Backdrop/Backdrop";
 export { default as CardApi } from "./CardApi/CardApi";
 export { default as ContainerApi } from "./ContainerApi/ContainerApi";
 export { default as LoadingSpinner } from "./LoadingSpinner/LoadingSpinner";
+export { default as Filter } from "./Filter/Filter";

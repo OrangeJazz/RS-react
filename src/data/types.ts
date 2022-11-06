@@ -26,7 +26,7 @@ export interface User {
   promo: boolean;
 }
 
-export interface Item {
+export interface PeopleItem {
   id: string;
   birth_year: string;
   name: string;
@@ -43,4 +43,15 @@ export interface Item {
   films: string[];
   species: string[];
   starships: string[];
+}
+
+export interface FormData {
+  firstName: string;
+  lastName: string;
+  image: FileList;
+  date: string;
+  dollType: Set<string>;
+  rare: boolean;
+  favBrand: string;
+  promoPermission: boolean;
 }

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import classes from "./CardApi.module.css";
-import { Item } from "../../data/types";
+import { PeopleItem } from "../../data/types";
 
 interface CardApiProps {
-  item: Item;
-  setActiveItem: (item: Item) => void;
+  item: PeopleItem;
+  setActiveItem: (item: PeopleItem) => void;
 }
 
 const CardApi: FC<CardApiProps> = (props) => {

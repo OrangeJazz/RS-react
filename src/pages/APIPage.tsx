@@ -1,19 +1,19 @@
 import { SearchBarApi, LoadingSpinner, ContainerApi } from "components";
-import React, { useEffect, useState, FC } from "react";
+import React, { useEffect, useState, FC, useContext } from "react";
 import axiosInstance from "../services/api";
-import { Item } from "../data/types";
+import { Context } from "App";
+import { changeItems } from "store/actions";
 
 const APIPage: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [loadedItems, setLoadedItems] = useState([] as Item[]);
-
+  const { state, dispatch } = useContext(Context);
   useEffect(() => {
     setIsLoading(true);
 
     axiosInstance
-      .get(`people/`)
+      .get(`${state.filter}/`)
       .then((response) => {
-        setLoadedItems(response.data.results);
+        dispatch(changeItems(response.data.results));
         setIsLoading(false);
       })
       .catch((err) => {
@@ -24,14 +24,10 @@ const APIPage: FC = () => {
   return (
     <div className="container">
       <h2>API Page</h2>
-      <SearchBarApi
-        items={(items) => {
-          setLoadedItems(items);
-        }}
-      />
+      <SearchBarApi />
       <div className="content-wrapper">
-        {(isLoading || !loadedItems.length) && <LoadingSpinner />}
-        {!isLoading && <ContainerApi items={loadedItems} />}
+        {(isLoading || !state.items.length) && <LoadingSpinner />}
+        {!isLoading && <ContainerApi items={state.items} />}
       </div>
     </div>
   );

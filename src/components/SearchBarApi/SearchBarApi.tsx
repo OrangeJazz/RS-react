@@ -1,27 +1,30 @@
-import { Item } from "../../data/types";
-import React, { FC, useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useContext } from "react";
 import axiosInstance from "../../services/api";
 import classes from "./SearchBarApi.module.css";
+import { Filter } from "components";
+import { Context } from "App";
+import { changeItems, changeSearchValue } from "store/actions";
 
-interface SearchProps {
-  items: (value: Item[]) => void;
-}
-const SearchBarApi: FC<SearchProps> = (props) => {
-  const [searchValue, setSearchValue] = useState<string>("");
+const SearchBarApi = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { state, dispatch } = useContext(Context);
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setSearchValue(value);
+    dispatch(changeSearchValue(value));
   };
 
   const submitHandler = async (e: ChangeEvent<HTMLFormElement>) => {
+    const filter = state.filter;
+    const searchValue = state.searchValue;
     e.preventDefault();
     setIsLoading(true);
-    props.items([]);
+    dispatch(changeItems([]));
     try {
-      const response = await axiosInstance.get(`people/?search=${searchValue}`);
-      props.items(response.data.results);
+      const response = await axiosInstance.get(
+        `${filter}/?search=${searchValue}`
+      );
+      dispatch(changeItems(response.data.results));
     } catch (err) {
       console.error(err);
     } finally {
@@ -36,7 +39,7 @@ const SearchBarApi: FC<SearchProps> = (props) => {
           type="search"
           className={classes.search__input}
           placeholder="Search"
-          value={searchValue}
+          value={state.searchValue}
           onChange={changeHandler}
           disabled={isLoading}
           id="search"
@@ -49,6 +52,7 @@ const SearchBarApi: FC<SearchProps> = (props) => {
         >
           Search
         </button>
+        <Filter />
       </form>
     </div>
   );
