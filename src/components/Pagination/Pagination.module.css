@@ -1,0 +1,10 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  background-color: #ebdffd;
+  padding: 3rem;
+}
+
+a {
+  color: rgba(41, 27, 75);
+}

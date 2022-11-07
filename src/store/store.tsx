@@ -5,6 +5,8 @@ export type State = {
   searchValue: string;
   items: PeopleItem[];
   form: FormData;
+  page: number[];
+  totalItemsCount: number;
 };
 
 export const initialState: State = {
@@ -21,4 +23,6 @@ export const initialState: State = {
     favBrand: "",
     promoPermission: false,
   },
+  page: [1, 10],
+  totalItemsCount: 0,
 };

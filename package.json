@@ -10,6 +10,7 @@
     "@types/node": "^16.11.62",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "antd": "^4.24.1",
     "axios": "0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -55,7 +56,8 @@
     "eslint-plugin-react": "^7.31.8",
     "husky": "^7.0.4",
     "lint-staged": "^12.4.1",
-    "prettier": "2.7.1",
-    "msw": "^0.47.4"
+    "msw": "^0.47.4",
+    "@types/antd": "^1.0.0",
+    "prettier": "2.7.1"
   }
 }

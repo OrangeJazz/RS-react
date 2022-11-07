@@ -7,10 +7,13 @@ import {
   CHANGE_FILTER,
   CHANGE_FIRST_NAME,
   CHANGE_ITEMS,
+  CHANGE_ITEMS_PER_PAGE,
   CHANGE_LAST_NAME,
+  CHANGE_PAGE_NUMBER,
   CHANGE_PROMO,
   CHANGE_RARE,
   CHANGE_SEARCH_VALUE,
+  CHANGE_TOTAL_ITEMS_COUNT,
   DELETE_DOLL_TYPE,
 } from "./constants";
 import { State } from "./store";
@@ -34,6 +37,21 @@ const reducer = (state: State, action: Actions): State => {
       return {
         ...state,
         items: action.payload,
+      };
+    case CHANGE_TOTAL_ITEMS_COUNT:
+      return {
+        ...state,
+        totalItemsCount: action.payload,
+      };
+    case CHANGE_PAGE_NUMBER:
+      return {
+        ...state,
+        page: [action.payload, state.page[1]],
+      };
+    case CHANGE_ITEMS_PER_PAGE:
+      return {
+        ...state,
+        page: [state.page[0], action.payload],
       };
 
     case CHANGE_FIRST_NAME:
@@ -103,12 +121,10 @@ const reducer = (state: State, action: Actions): State => {
       };
     case DELETE_DOLL_TYPE:
       state.form.dollType.delete(action.payload);
-      // console.log(state.form.dollType);
       return {
         ...state,
         form: {
           ...state.form,
-          // dollType: deletedDollType,
         },
       };
 

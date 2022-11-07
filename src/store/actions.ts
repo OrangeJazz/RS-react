@@ -7,10 +7,13 @@ import {
   CHANGE_FILTER,
   CHANGE_FIRST_NAME,
   CHANGE_ITEMS,
+  CHANGE_ITEMS_PER_PAGE,
   CHANGE_LAST_NAME,
+  CHANGE_PAGE_NUMBER,
   CHANGE_PROMO,
   CHANGE_RARE,
   CHANGE_SEARCH_VALUE,
+  CHANGE_TOTAL_ITEMS_COUNT,
   DELETE_DOLL_TYPE,
 } from "./constants";
 
@@ -64,6 +67,18 @@ export type DeleteDollType = {
   type: typeof DELETE_DOLL_TYPE;
   payload: string;
 };
+export type ChangePageNumber = {
+  type: typeof CHANGE_PAGE_NUMBER;
+  payload: number;
+};
+export type ChangeTotalItemsCount = {
+  type: typeof CHANGE_TOTAL_ITEMS_COUNT;
+  payload: number;
+};
+export type ChangeItemsPerPage = {
+  type: typeof CHANGE_ITEMS_PER_PAGE;
+  payload: number;
+};
 
 export type Actions =
   | ChangeFilter
@@ -77,7 +92,10 @@ export type Actions =
   | ChangePromo
   | ChangeRare
   | AddDollType
-  | DeleteDollType;
+  | DeleteDollType
+  | ChangePageNumber
+  | ChangeTotalItemsCount
+  | ChangeItemsPerPage;
 
 export const changeFilter = (payload: string): ChangeFilter => ({
   type: CHANGE_FILTER,
@@ -128,5 +146,20 @@ export const addDollType = (payload: string): AddDollType => ({
 });
 export const deleteDollType = (payload: string): DeleteDollType => ({
   type: DELETE_DOLL_TYPE,
+  payload,
+});
+
+export const changePageNumber = (payload: number): ChangePageNumber => ({
+  type: CHANGE_PAGE_NUMBER,
+  payload,
+});
+export const changeItemsPerPage = (payload: number): ChangeItemsPerPage => ({
+  type: CHANGE_ITEMS_PER_PAGE,
+  payload,
+});
+export const changeTotalItemsCount = (
+  payload: number
+): ChangeTotalItemsCount => ({
+  type: CHANGE_TOTAL_ITEMS_COUNT,
   payload,
 });

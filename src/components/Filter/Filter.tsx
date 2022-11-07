@@ -1,7 +1,11 @@
 import { Context } from "App";
 import React, { ChangeEvent, useContext, useState } from "react";
 import axiosInstance from "services/api";
-import { changeFilter, changeItems } from "store/actions";
+import {
+  changeFilter,
+  changeItems,
+  changeTotalItemsCount,
+} from "store/actions";
 
 import classes from "./Filter.module.css";
 
@@ -17,6 +21,7 @@ const Filter = () => {
     try {
       const response = await axiosInstance.get(`${e.target.value}/`);
       dispatch(changeItems(response.data.results));
+      dispatch(changeTotalItemsCount(Number(response.data.count)));
     } catch (err) {
       console.error(err);
     } finally {

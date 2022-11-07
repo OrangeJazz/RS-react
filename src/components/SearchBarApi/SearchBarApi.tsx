@@ -3,7 +3,11 @@ import axiosInstance from "../../services/api";
 import classes from "./SearchBarApi.module.css";
 import { Filter } from "components";
 import { Context } from "App";
-import { changeItems, changeSearchValue } from "store/actions";
+import {
+  changeItems,
+  changeSearchValue,
+  changeTotalItemsCount,
+} from "store/actions";
 
 const SearchBarApi = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,6 +29,7 @@ const SearchBarApi = () => {
         `${filter}/?search=${searchValue}`
       );
       dispatch(changeItems(response.data.results));
+      dispatch(changeTotalItemsCount(Number(response.data.count)));
     } catch (err) {
       console.error(err);
     } finally {
