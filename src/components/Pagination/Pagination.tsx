@@ -10,9 +10,11 @@ import {
 } from "store/actions";
 import classes from "./Pagination.module.css";
 // import "antd/dist/antd.css";
+
 const PaginationBar = () => {
   const { state, dispatch } = useContext(Context);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const onChange = async (page: number, pageSize: number) => {
     dispatch(changePageNumber(page));
     dispatch(changeItemsPerPage(pageSize));

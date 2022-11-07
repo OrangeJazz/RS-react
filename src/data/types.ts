@@ -30,7 +30,6 @@ export interface PeopleItem {
   id: string;
   birth_year: string;
   name: string;
-  created: string;
   edited: string;
   eye_color: string;
   gender: string;
@@ -43,6 +42,42 @@ export interface PeopleItem {
   films: string[];
   species: string[];
   starships: string[];
+}
+
+export interface StarshipsItem {
+  id: string;
+  name: string;
+  model: string;
+  manufacturer: string;
+  cost_in_credits: string;
+  length: string;
+  max_atmosphering_speed: string;
+  crew: string;
+  passengers: string;
+  cargo_capacity: string;
+  consumables: string;
+  hyperdrive_rating: string;
+  MGLT: string;
+  starship_class: string;
+  pilots: string[];
+  films: string[];
+  url: string;
+}
+
+export interface PlanetsItem {
+  id: string;
+  name: string;
+  rotation_period: string;
+  orbital_period: string;
+  diameter: string;
+  climate: string;
+  gravity: string;
+  terrain: string;
+  surface_water: string;
+  population: string;
+  residents: string[];
+  films: string[];
+  url: string;
 }
 
 export interface FormData {
