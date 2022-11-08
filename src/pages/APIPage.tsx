@@ -22,7 +22,6 @@ const APIPage: FC = () => {
         })
         .catch((err) => {
           console.error(err);
-          // dispatch(changeItems([]));
         });
     }
     if (state.page[1] === 20) {

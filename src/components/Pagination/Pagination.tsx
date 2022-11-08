@@ -9,7 +9,6 @@ import {
   changePageNumber,
 } from "store/actions";
 import classes from "./Pagination.module.css";
-// import "antd/dist/antd.css";
 
 const PaginationBar = () => {
   const { state, dispatch } = useContext(Context);

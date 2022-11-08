@@ -1,4 +1,4 @@
-import { PeopleItem } from "data/types";
+import { PeopleItem, PlanetsItem, StarshipsItem } from "data/types";
 import {
   ADD_DOLL_TYPE,
   CHANGE_DATE,
@@ -6,6 +6,7 @@ import {
   CHANGE_FILE,
   CHANGE_FILTER,
   CHANGE_FIRST_NAME,
+  CHANGE_ITEM,
   CHANGE_ITEMS,
   CHANGE_ITEMS_PER_PAGE,
   CHANGE_LAST_NAME,
@@ -79,6 +80,10 @@ export type ChangeItemsPerPage = {
   type: typeof CHANGE_ITEMS_PER_PAGE;
   payload: number;
 };
+export type ChangeItem = {
+  type: typeof CHANGE_ITEM;
+  payload: PeopleItem | PlanetsItem | StarshipsItem;
+};
 
 export type Actions =
   | ChangeFilter
@@ -95,7 +100,8 @@ export type Actions =
   | DeleteDollType
   | ChangePageNumber
   | ChangeTotalItemsCount
-  | ChangeItemsPerPage;
+  | ChangeItemsPerPage
+  | ChangeItem;
 
 export const changeFilter = (payload: string): ChangeFilter => ({
   type: CHANGE_FILTER,
@@ -155,6 +161,12 @@ export const changePageNumber = (payload: number): ChangePageNumber => ({
 });
 export const changeItemsPerPage = (payload: number): ChangeItemsPerPage => ({
   type: CHANGE_ITEMS_PER_PAGE,
+  payload,
+});
+export const changeItem = (
+  payload: PeopleItem | PlanetsItem | StarshipsItem
+): ChangeItem => ({
+  type: CHANGE_ITEM,
   payload,
 });
 export const changeTotalItemsCount = (

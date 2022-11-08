@@ -1,19 +1,26 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import classes from "./CardApi.module.css";
-import { PeopleItem } from "../../data/types";
+import { PeopleItem, PlanetsItem, StarshipsItem } from "../../data/types";
+import { Link, NavLink } from "react-router-dom";
+import { Context } from "App";
+import { changeItem } from "store/actions";
 
 interface CardApiProps {
-  item: PeopleItem;
-  setActiveItem: (item: PeopleItem) => void;
+  item: PeopleItem | PlanetsItem | StarshipsItem;
+  // setActiveItem: (item: PeopleItem) => void;
 }
 
 const CardApi: FC<CardApiProps> = (props) => {
+  const { dispatch } = useContext(Context);
   const item = props.item;
+
   const clickHandler = () => {
-    props.setActiveItem(item);
+    dispatch(changeItem(item));
   };
   return (
-    <div
+    <NavLink
+      key={item.name}
+      to={`/api/${item.name}`}
       className={classes.card}
       onClick={clickHandler}
       data-testid={"card-api"}
@@ -25,7 +32,7 @@ const CardApi: FC<CardApiProps> = (props) => {
           </span>
         </h4>
       </div>
-    </div>
+    </NavLink>
   );
 };
 

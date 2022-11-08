@@ -1,12 +1,13 @@
-import { PeopleItem } from "data/types";
+import { PeopleItem, PlanetsItem, StarshipsItem } from "data/types";
 import { FormData } from "data/types";
 export type State = {
   filter: string;
   searchValue: string;
-  items: PeopleItem[];
+  items: PeopleItem[] | PlanetsItem[] | StarshipsItem[];
   form: FormData;
   page: number[];
   totalItemsCount: number;
+  item: PeopleItem | PlanetsItem | StarshipsItem | null;
 };
 
 export const initialState: State = {
@@ -25,4 +26,5 @@ export const initialState: State = {
   },
   page: [1, 10],
   totalItemsCount: 0,
+  item: null,
 };

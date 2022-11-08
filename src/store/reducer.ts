@@ -6,6 +6,7 @@ import {
   CHANGE_FILE,
   CHANGE_FILTER,
   CHANGE_FIRST_NAME,
+  CHANGE_ITEM,
   CHANGE_ITEMS,
   CHANGE_ITEMS_PER_PAGE,
   CHANGE_LAST_NAME,
@@ -53,7 +54,11 @@ const reducer = (state: State, action: Actions): State => {
         ...state,
         page: [state.page[0], action.payload],
       };
-
+    case CHANGE_ITEM:
+      return {
+        ...state,
+        item: action.payload,
+      };
     case CHANGE_FIRST_NAME:
       return {
         ...state,

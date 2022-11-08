@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
 import { CardApi, Modal } from "components";
-import { PeopleItem } from "../../data/types";
+import { PeopleItem, PlanetsItem, StarshipsItem } from "../../data/types";
 import classes from "./ContainerApi.module.css";
 
 interface ContainerApiProps {
-  items: PeopleItem[];
+  items: PeopleItem[] | PlanetsItem[] | StarshipsItem[];
 }
 
 const ContainerApi: FC<ContainerApiProps> = (props) => {
@@ -12,11 +12,7 @@ const ContainerApi: FC<ContainerApiProps> = (props) => {
   return (
     <div className={classes.api__container} data-testid={"container-api"}>
       {props.items.map((el) => (
-        <CardApi
-          item={el}
-          key={el.name}
-          setActiveItem={(el) => setModalItem(el)}
-        />
+        <CardApi item={el} key={el.name} />
       ))}
       {modalItem && (
         <Modal

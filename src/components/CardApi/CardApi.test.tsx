@@ -31,13 +31,23 @@ const itemMock = {
 describe("Card tests", () => {
   window.URL.createObjectURL = jest.fn();
   it("Card renders", async () => {
-    render(<CardApi item={itemMock} setActiveItem={foo} />);
+    render(
+      <CardApi
+        item={itemMock}
+        // setActiveItem={foo}
+      />
+    );
     const element = await screen.findByTestId("card-api");
     expect(element).toBeInTheDocument();
   });
 
   it("Card is active", async () => {
-    render(<CardApi item={itemMock} setActiveItem={foo} />);
+    render(
+      <CardApi
+        item={itemMock}
+        // setActiveItem={foo}
+      />
+    );
     const element = await screen.findByTestId("card-api");
     fireEvent.click(element);
     expect(logSpy).toHaveBeenCalledWith("it is here");

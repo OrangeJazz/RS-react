@@ -97,7 +97,6 @@ const Form = (props: FormProps) => {
       setImgState(URL.createObjectURL(avatar.files[0]));
       dispatch(changeFile(avatar.files));
       console.log(e.target.value);
-      // console.log((file.current as HTMLInputElement).files as FileList);
     }
 
     if (name.includes("dollType")) {
@@ -319,9 +318,6 @@ const Form = (props: FormProps) => {
           ref={file}
           id="upload-button"
           data-testid={"image-input"}
-          // value={
-          // state.form.image[0] && URL.createObjectURL(state.form.image[0])
-          // }
         />
       </fieldset>
       <fieldset className="form__fieldset">
