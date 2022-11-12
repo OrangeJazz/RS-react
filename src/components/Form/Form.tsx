@@ -1,4 +1,4 @@
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from "../../hooks/redux";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -11,7 +11,7 @@ import {
   changePromo,
   changeRare,
   deleteDollType,
-} from "store/reducers/sliceForm";
+} from "../../store/reducers/sliceForm";
 import { User } from "../../data/types";
 import "./Form.css";
 

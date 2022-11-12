@@ -3,7 +3,7 @@ import classes from "./CardApi.module.css";
 import { PeopleItem, PlanetsItem, StarshipsItem } from "../../data/types";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { changeItem } from "store/reducers/sliceApi";
+import { changeItem } from "../../store/reducers/sliceApi";
 
 interface CardApiProps {
   item: PeopleItem | PlanetsItem | StarshipsItem;

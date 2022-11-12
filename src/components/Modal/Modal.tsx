@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import classes from "./Modal.module.css";
 import { PeopleItem, PlanetsItem, StarshipsItem } from "../../data/types";
 import { Backdrop } from "components";
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from "../../hooks/redux";
 
 interface ModalProps {
   onCancel: () => void;

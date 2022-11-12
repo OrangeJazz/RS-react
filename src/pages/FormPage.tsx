@@ -1,7 +1,6 @@
 import React from "react";
-import { Form } from "components";
-import { FormCardContainer } from "components";
-import { User } from "data/types";
+import { Form, FormCardContainer } from "components";
+import { User } from "../data/types";
 
 interface FormPageProps {
   data?: string;

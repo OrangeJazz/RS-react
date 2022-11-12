@@ -1,7 +1,7 @@
 import { useAppSelector } from "hooks/redux";
 import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import axiosInstance from "services/api";
+import axiosInstance from "../../services/api";
 import {
   changeFilter,
   changeItems,

@@ -14,3 +14,4 @@ export { default as CardApi } from "./CardApi/CardApi";
 export { default as ContainerApi } from "./ContainerApi/ContainerApi";
 export { default as LoadingSpinner } from "./LoadingSpinner/LoadingSpinner";
 export { default as Filter } from "./Filter/Filter";
+export { default as PaginationBar } from "./Pagination/Pagination";

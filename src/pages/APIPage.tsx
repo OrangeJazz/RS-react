@@ -1,8 +1,12 @@
-import { SearchBarApi, LoadingSpinner, ContainerApi } from "components";
+import {
+  SearchBarApi,
+  LoadingSpinner,
+  ContainerApi,
+  PaginationBar,
+} from "components";
 import React, { useEffect, FC } from "react";
-import PaginationBar from "components/Pagination/Pagination";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { fetchItems } from "store/reducers/sliceApi";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { fetchItems } from "../store/reducers/sliceApi";
 
 const APIPage: FC = () => {
   const apiState = useAppSelector((state) => state.apiReducer);

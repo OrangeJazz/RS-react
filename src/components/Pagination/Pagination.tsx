@@ -1,12 +1,14 @@
 import { Pagination, PaginationProps } from "antd";
-import { useAppSelector } from "hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { changeItemsPerPage, changePageNumber } from "store/reducers/sliceApi";
+import {
+  changeItemsPerPage,
+  changePageNumber,
+} from "../../store/reducers/sliceApi";
 import classes from "./Pagination.module.css";
 
 const PaginationBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const apiState = useAppSelector((state) => state.apiReducer);
 
   const onChange = async (page: number, pageSize: number) => {

@@ -1,5 +1,5 @@
-import { PeopleItem, PlanetsItem, StarshipsItem } from "data/types";
-import { useAppSelector } from "hooks/redux";
+import { PeopleItem, PlanetsItem, StarshipsItem } from "../../data/types";
+import { useAppSelector } from "../../hooks/redux";
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./ItemPage.module.css";
