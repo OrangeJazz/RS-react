@@ -1,8 +1,8 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import classes from "./Modal.module.css";
 import { PeopleItem, PlanetsItem, StarshipsItem } from "../../data/types";
 import { Backdrop } from "components";
-import { Context } from "App";
+import { useAppSelector } from "hooks/redux";
 
 interface ModalProps {
   onCancel: () => void;
@@ -10,7 +10,7 @@ interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = (props) => {
-  const { state } = useContext(Context);
+  const apiState = useAppSelector((state) => state.apiReducer);
   const item = props.item;
 
   const cancelHandler = () => {
@@ -31,7 +31,7 @@ const Modal: FC<ModalProps> = (props) => {
         <h2 className={classes.modal__heading} data-testid="modal-name">
           {props.item.name}
         </h2>
-        {state.filter === "people" && (
+        {apiState.filter === "people" && (
           <ul className={classes.modal__list}>
             <li>Birth year: {(item as PeopleItem).birth_year}</li>
             <li>Gender: {(item as PeopleItem).gender}</li>
@@ -46,7 +46,7 @@ const Modal: FC<ModalProps> = (props) => {
           </ul>
         )}
 
-        {state.filter === "planets" && (
+        {apiState.filter === "planets" && (
           <ul className={classes.modal__list}>
             <li>Rotation period: {(item as PlanetsItem).rotation_period}</li>
             <li>Orbital period: {(item as PlanetsItem).orbital_period}</li>
@@ -58,7 +58,7 @@ const Modal: FC<ModalProps> = (props) => {
             <li>Population: {(item as PlanetsItem).population}</li>
           </ul>
         )}
-        {state.filter === "starships" && (
+        {apiState.filter === "starships" && (
           <ul className={classes.modal__list}>
             <li>Model: {(item as StarshipsItem).model}</li>
             <li>Manufacturer: {(item as StarshipsItem).manufacturer}</li>

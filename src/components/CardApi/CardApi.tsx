@@ -1,9 +1,9 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import classes from "./CardApi.module.css";
 import { PeopleItem, PlanetsItem, StarshipsItem } from "../../data/types";
-import { Link, NavLink } from "react-router-dom";
-import { Context } from "App";
-import { changeItem } from "store/actions";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { changeItem } from "store/reducers/sliceApi";
 
 interface CardApiProps {
   item: PeopleItem | PlanetsItem | StarshipsItem;
@@ -11,7 +11,7 @@ interface CardApiProps {
 }
 
 const CardApi: FC<CardApiProps> = (props) => {
-  const { dispatch } = useContext(Context);
+  const dispatch = useDispatch();
   const item = props.item;
 
   const clickHandler = () => {

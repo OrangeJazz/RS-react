@@ -85,7 +85,7 @@ export interface FormData {
   lastName: string;
   image: FileList;
   date: string;
-  dollType: Set<string>;
+  dollType: string[];
   rare: boolean;
   favBrand: string;
   promoPermission: boolean;

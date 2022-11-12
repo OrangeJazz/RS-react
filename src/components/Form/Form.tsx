@@ -1,5 +1,6 @@
-import { Context } from "App";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useAppSelector } from "hooks/redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   addDollType,
   changeDate,
@@ -10,7 +11,7 @@ import {
   changePromo,
   changeRare,
   deleteDollType,
-} from "store/actions";
+} from "store/reducers/sliceForm";
 import { User } from "../../data/types";
 import "./Form.css";
 
@@ -57,7 +58,8 @@ const Form = (props: FormProps) => {
   const [rarityState, setRarityState] = useState(true);
   const [promoPermissionState, setPromoPermissionState] = useState(true);
 
-  const { state, dispatch } = useContext(Context);
+  const dispatch = useDispatch();
+  const formState = useAppSelector((state) => state.formReducer);
 
   useEffect(() => {
     if (
@@ -269,7 +271,7 @@ const Form = (props: FormProps) => {
             ref={name}
             className="form__text-input"
             data-testid={"name-input"}
-            value={state.form.firstName}
+            value={formState.firstName}
           />
         </label>
         <div
@@ -289,7 +291,7 @@ const Form = (props: FormProps) => {
             ref={surname}
             className="form__text-input"
             data-testid={"surname-input"}
-            value={state.form.lastName}
+            value={formState.lastName}
           />
         </label>
         <div
@@ -330,7 +332,7 @@ const Form = (props: FormProps) => {
             ref={date}
             className="form__date-input"
             data-testid={"date-input"}
-            value={state.form.date}
+            value={formState.date}
           />
         </label>
         <div
@@ -353,7 +355,7 @@ const Form = (props: FormProps) => {
                 value="bjd"
                 onChange={onChangeHandler}
                 data-testid={"dollType-input"}
-                defaultChecked={state.form.dollType.has("bjd")}
+                defaultChecked={formState.dollType.includes("bjd")}
               />
               <label htmlFor="bjd">BJD</label>
             </div>
@@ -365,7 +367,7 @@ const Form = (props: FormProps) => {
                 ref={dollTypeAntique}
                 value="antique"
                 onChange={onChangeHandler}
-                defaultChecked={state.form.dollType.has("antique")}
+                defaultChecked={formState.dollType.includes("antique")}
               />
               <label htmlFor="antique">Antique</label>
             </div>
@@ -377,7 +379,7 @@ const Form = (props: FormProps) => {
                 ref={dollTypeOoak}
                 value="OOAK"
                 onChange={onChangeHandler}
-                defaultChecked={state.form.dollType.has("OOAK")}
+                defaultChecked={formState.dollType.includes("OOAK")}
               />
               <label htmlFor="ooak">OOAK</label>
             </div>
@@ -389,7 +391,7 @@ const Form = (props: FormProps) => {
                 ref={dollTypePlay}
                 value="play"
                 onChange={onChangeHandler}
-                defaultChecked={state.form.dollType.has("play")}
+                defaultChecked={formState.dollType.includes("play")}
               />
               <label htmlFor="play">Play</label>
             </div>
@@ -401,7 +403,7 @@ const Form = (props: FormProps) => {
                 ref={dollTypeCollection}
                 value="collection"
                 onChange={onChangeHandler}
-                defaultChecked={state.form.dollType.has("collection")}
+                defaultChecked={formState.dollType.includes("collection")}
               />
               <label htmlFor="collection">Collection</label>
             </div>
@@ -419,7 +421,7 @@ const Form = (props: FormProps) => {
               name="doll-rare"
               value="true"
               onChange={onChangeHandler}
-              defaultChecked={!!state.form.rare}
+              defaultChecked={!!formState.rare}
               data-testid={"radio-input-1"}
             />
             <label htmlFor="rare">
@@ -434,7 +436,7 @@ const Form = (props: FormProps) => {
               name="doll-rare"
               value="false"
               onChange={onChangeHandler}
-              defaultChecked={!state.form.rare}
+              defaultChecked={!formState.rare}
               data-testid={"radio-input-2"}
             />
             <label htmlFor="not-rare">
@@ -455,7 +457,7 @@ const Form = (props: FormProps) => {
             className="select__options"
             onChange={onChangeHandler}
             data-testid={"select-input"}
-            defaultValue={state.form.favBrand}
+            defaultValue={formState.favBrand}
           >
             <option value="barbie">Barbie</option>
             <option value="pullip">Pullip</option>
@@ -475,7 +477,7 @@ const Form = (props: FormProps) => {
             name="promoPermission"
             onChange={onChangeHandler}
             data-testid={"promoPermission-input"}
-            defaultChecked={state.form.promoPermission}
+            defaultChecked={formState.promoPermission}
           />
           I want to receive notifications about promo, sales, etc.
         </label>

@@ -1,18 +1,18 @@
-import { Context } from "App";
 import { PeopleItem, PlanetsItem, StarshipsItem } from "data/types";
-import React, { useContext } from "react";
+import { useAppSelector } from "hooks/redux";
+import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./ItemPage.module.css";
 
 const ItemPage = () => {
-  const { state } = useContext(Context);
-  const item = state.item;
+  const apiState = useAppSelector((state) => state.apiReducer);
+  const item = apiState.item;
 
   return (
     <div className="container">
       <h2>{item?.name}</h2>
       <div className="content-wrapper">
-        {state.filter === "people" && (
+        {apiState.filter === "people" && (
           <ul className={classes["list"]}>
             <li>Birth year: {(item as PeopleItem).birth_year}</li>
             <li>Gender: {(item as PeopleItem).gender}</li>
@@ -27,8 +27,8 @@ const ItemPage = () => {
           </ul>
         )}
 
-        {state.filter === "planets" && (
-          <ul className="">
+        {apiState.filter === "planets" && (
+          <ul className={classes["list"]}>
             <li>Rotation period: {(item as PlanetsItem).rotation_period}</li>
             <li>Orbital period: {(item as PlanetsItem).orbital_period}</li>
             <li>Diameter: {(item as PlanetsItem).diameter}</li>
@@ -39,8 +39,8 @@ const ItemPage = () => {
             <li>Population: {(item as PlanetsItem).population}</li>
           </ul>
         )}
-        {state.filter === "starships" && (
-          <ul className="">
+        {apiState.filter === "starships" && (
+          <ul className={classes["list"]}>
             <li>Model: {(item as StarshipsItem).model}</li>
             <li>Manufacturer: {(item as StarshipsItem).manufacturer}</li>
             <li>Cost in credits: {(item as StarshipsItem).cost_in_credits}</li>

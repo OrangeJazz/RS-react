@@ -1,69 +1,29 @@
 import { SearchBarApi, LoadingSpinner, ContainerApi } from "components";
-import React, { useEffect, useState, FC, useContext } from "react";
-import axiosInstance from "../services/api";
-import { Context } from "App";
-import { changeItems, changeTotalItemsCount } from "store/actions";
+import React, { useEffect, FC } from "react";
 import PaginationBar from "components/Pagination/Pagination";
-import { PeopleItem } from "data/types";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
+import { fetchItems } from "store/reducers/sliceApi";
 
 const APIPage: FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const { state, dispatch } = useContext(Context);
+  const apiState = useAppSelector((state) => state.apiReducer);
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(changeItems([]));
-    setIsLoading(true);
-    if (state.page[1] === 10) {
-      axiosInstance
-        .get(`${state.filter}/?page=${state.page[0]}`)
-        .then((response) => {
-          dispatch(changeItems(response.data.results));
-          dispatch(changeTotalItemsCount(Number(response.data.count)));
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-    if (state.page[1] === 20) {
-      const res1 = axiosInstance
-        .get(`${state.filter}/?page=${state.page[0] * 2 - 1}`)
-        .then((response) => {
-          dispatch(changeTotalItemsCount(Number(response.data.count)));
-          return response.data.results as PeopleItem[];
-        })
-        .catch((err) => {
-          console.error(err);
-          return [];
-        });
-      const res2 = axiosInstance
-        .get(`${state.filter}/?page=${state.page[0] * 2}`)
-        .then((response) => response.data.results as PeopleItem[])
-        .catch((err) => {
-          console.error(err);
-          return [];
-        });
-      Promise.all([res1, res2])
-        .then((result) => {
-          setIsLoading(false);
-          return result.flat();
-        })
-        .then((res) => {
-          dispatch(changeItems(res as PeopleItem[]));
-        })
-        .catch((err) => {
-          console.error(err);
-          dispatch(changeItems([]));
-        });
-    }
-  }, [state.page, state.filter, dispatch]);
+    dispatch(
+      fetchItems({
+        filter: apiState.filter,
+        page: apiState.page[0],
+        itemsNum: apiState.page[1],
+      })
+    );
+  }, [apiState.page, apiState.filter, dispatch]);
 
   return (
     <div className="container">
       <h2>API Page</h2>
       <SearchBarApi />
       <div className="content-wrapper">
-        {(isLoading || !state.items.length) && <LoadingSpinner />}
-        {!isLoading && <ContainerApi items={state.items} />}
+        {!!apiState.loading && <LoadingSpinner />}
+        {!apiState.loading && <ContainerApi items={apiState.items} />}
       </div>
       <PaginationBar />
     </div>

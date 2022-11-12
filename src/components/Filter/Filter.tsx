@@ -1,16 +1,18 @@
-import { Context } from "App";
-import React, { ChangeEvent, useContext, useState } from "react";
+import { useAppSelector } from "hooks/redux";
+import React, { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import axiosInstance from "services/api";
 import {
   changeFilter,
   changeItems,
   changeTotalItemsCount,
-} from "store/actions";
+} from "store/reducers/sliceApi";
 
 import classes from "./Filter.module.css";
 
 const Filter = () => {
-  const { state, dispatch } = useContext(Context);
+  const dispatch = useDispatch();
+  const apiState = useAppSelector((state) => state.apiReducer);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onChangeHandler = async (e: ChangeEvent<HTMLSelectElement>) => {
@@ -36,7 +38,7 @@ const Filter = () => {
         name="filter"
         className={classes.filter__options}
         onChange={onChangeHandler}
-        value={state.filter}
+        value={apiState.filter}
       >
         <option value="people">People</option>
         <option value="planets">Planets</option>

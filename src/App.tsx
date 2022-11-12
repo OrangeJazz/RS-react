@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import {
   NotFoundPage,
@@ -9,22 +9,12 @@ import {
   ItemPage,
 } from "./pages";
 import { Layout } from "./components";
-import reducer from "./store/reducer";
-import { initialState, State } from "store/store";
-import { Actions } from "store/actions";
-
-export const Context = React.createContext<{
-  state: State;
-  dispatch: (action: Actions) => void;
-}>({
-  state: initialState,
-  dispatch: () => {},
-});
+import { Provider } from "react-redux";
+import { setupStore } from "./store/store";
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Context.Provider value={{ state, dispatch }}>
+    <Provider store={setupStore()}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
@@ -35,7 +25,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
-    </Context.Provider>
+    </Provider>
   );
 }
 

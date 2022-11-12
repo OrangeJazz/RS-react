@@ -1,17 +1,12 @@
-import React, { useState, ChangeEvent, useContext } from "react";
-import axiosInstance from "../../services/api";
+import React, { ChangeEvent } from "react";
 import classes from "./SearchBarApi.module.css";
 import { Filter } from "components";
-import { Context } from "App";
-import {
-  changeItems,
-  changeSearchValue,
-  changeTotalItemsCount,
-} from "store/actions";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
+import { changeSearchValue, fetchSearchItems } from "store/reducers/sliceApi";
 
 const SearchBarApi = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { state, dispatch } = useContext(Context);
+  const dispatch = useAppDispatch();
+  const apiState = useAppSelector((state) => state.apiReducer);
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -19,22 +14,10 @@ const SearchBarApi = () => {
   };
 
   const submitHandler = async (e: ChangeEvent<HTMLFormElement>) => {
-    const filter = state.filter;
-    const searchValue = state.searchValue;
+    const filter = apiState.filter;
+    const searchValue = apiState.searchValue;
     e.preventDefault();
-    setIsLoading(true);
-    dispatch(changeItems([]));
-    try {
-      const response = await axiosInstance.get(
-        `${filter}/?search=${searchValue}`
-      );
-      dispatch(changeItems(response.data.results));
-      dispatch(changeTotalItemsCount(Number(response.data.count)));
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
+    dispatch(fetchSearchItems({ filter: filter, searchValue: searchValue }));
   };
 
   return (
@@ -44,9 +27,9 @@ const SearchBarApi = () => {
           type="search"
           className={classes.search__input}
           placeholder="Search"
-          value={state.searchValue}
+          value={apiState.searchValue}
           onChange={changeHandler}
-          disabled={isLoading}
+          disabled={apiState.loading}
           id="search"
           data-testid="api-search-input"
         />
